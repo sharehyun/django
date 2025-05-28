@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <style>
+        h2{text-align:center;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        table{width:900px;margin:20px auto}
+        th,td{height:40px; text-align:center;}
+        div{width:400px; margin:0 auto}
+        button{width:150px;height:50px;font-sixe:20px;}
+    </style>
+</head>
+<body>
+    {# (<- 디장고 주석, f12 html 페이지에서 안보임) 디장고html형태 : {% 문법: for,if %}, {{ 변수 }}, { 변수 | 옵션(필터) } #}
+    <!-- html주석은 디장고의 내부명령어를 실행시켜줌 -->
+    {# {{list}}<br> #}
+    {# {{count}}<br> #}
+    {# {{id}}<br> #}
+
+    <h2>stuinfolist</h2>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>학과</th>
+        </tr>
+        {% for s in list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href='/students/view/?name={{s.name}}'>{{s.name}}</a></td>
+            <td>{{s.major}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div>
+        <a href='/'><button>집으로 가다</button></a>
+        <a href='/students/write/'><button>학생등록</button></a>
+    </div>
+</body>
+</html>
