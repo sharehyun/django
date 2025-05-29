@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainpage</title>
+</head>
+<body>
+    <h2>메인페이지</h2>
+    <ul>
+        <li><a href='/admin/'>관리자페이지</a></li>
+        <!-- html href 유형  / -루트디렉토리에서, ./ -현재디렉토리에서, ../ -이전디렉토리에서 -->
+        <!-- html -> server 1.파라미터 2.우아한url -->
+        <li><a href='/student/list/'>학생정보리스트</a></li>
+        <hr>
+        <li>데이터 전달방법: html -> server 1.파라미터 2.우아한url</li>
+        <li><a href='/student/list/?name=1/'>파라미터전달 마지막/ 없음 : /student/list/?name=1</a></li>
+        <li><a href='/student/list/1/'>api방식으로전달 마지막/ 있음 : /student/list/1/</a></li>
+    </ul>
+</body>
+</html>
