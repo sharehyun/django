@@ -1,10 +1,10 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>게시글보기</title>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="/static/css/read.css">
   <script>
     function deleteBtn(){
-      if(confirm('{{board.bno}}번 게시글을 삭제하시겠습니까?'));{
-        alert('게시글을 삭제합니다.');
+      if (confirm('{{board.bno}}번 게시글을 삭제하시겠습니까?')){
+        alert("게시글을 삭제합니다.");
         location.href = '/board/delete/{{board.bno}}/';
       }
     }
@@ -63,15 +63,29 @@
         <th colspan='2'><strong>제목</strong><span class="separator">|</span>{{board.btitle}}</th>
       </tr>
       <tr>
-        <td><strong>작성일</strong><span class="separator">|</span>{{board.bdate|date:"Y-m-d"}}</td>
+        <td>
+          <strong>작성일</strong><span class="separator">|</span>{{board.bdate|date:'Y-m-d'}}
+        </td>
         <td><strong>조회수</strong><span class="separator">|</span>{{board.bhit}}</td>
       </tr>
       <tr>
-        <td colspan='2'><strong>작성자</strong><span class="separator">|</span>{{board.id}}</td>
+        <td colspan='2'>
+          <strong>작성자</strong><span class="separator">|</span>{{board.id}}
+        </td>
       </tr>
       <tr>
         <td colspan='2' class="article">
-         {{board.bcontent}}
+          {{board.bcontent}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan='2' class="article">
+          <strong>이미지첨부</strong><span class="separator">|</span>
+          {%if board.bfile%}
+           <img src='/media/{{board.bfile}}' width='100px'>
+          {%else%}
+           파일없음
+          {%endif%}
         </td>
       </tr>
       <tr>
@@ -82,10 +96,10 @@
       </tr>
     </table>
 
-    <a href='{%url "board:list"%}'><div class="list">목록</div></a>
+    <a href='{% url "board:list" %}?category={{category}}&search={{search}}'><div class="list">목록</div></a>
     <div class="list" onclick='deleteBtn()'>삭제</div>
-    <a href='{%url "board:update" board.bno%}'><div class="list">수정</div>
-    <a href='{%url "board:reply" board.bno%}'><div class="list">답글달기</div>
+    <a href='{% url "board:update" board.bno %}'><div class="list">수정</div></a>
+    <a href='{% url "board:reply" board.bno %}'><div class="list">답글달기</div></a>
   </section>
 
   <footer>

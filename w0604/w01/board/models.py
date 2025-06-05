@@ -8,10 +8,11 @@ class Board(models.Model):
     # 답글달기
     bgroup = models.IntegerField(default=0)    # 답글달기묶음
     bstep = models.IntegerField(default=0)     # 답글달기순서
-    bindent = models.IntegerField(default=0)   # 
+    bindent = models.IntegerField(default=0)   # 들여쓰기
     # ------
     bhit = models.IntegerField(default=0)
-    bfile = models.CharField(max_length=100,null=True,blank=True)
+    bfile = models.ImageField(null=True,blank=True,upload_to='board')
+    # FileField : 모든파일 업로드 가능
     bdate = models.DateTimeField(auto_now=True)  # 현재날짜시간자동등록
     
     def __str__(self):
